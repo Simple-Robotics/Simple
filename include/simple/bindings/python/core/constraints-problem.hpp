@@ -8,8 +8,8 @@
 #include "simple/core/constraints-problem.hpp"
 #include "simple/bindings/python/fwd.hpp"
 
-#include <pinocchio/bindings/python/utils/std-vector.hpp>
-#include <pinocchio/bindings/python/utils/copyable.hpp>
+#include <eigenpy/std-vector.hpp>
+#include <eigenpy/copyable.hpp>
 
 #define SIMPLE_CONSTRAINT_PROBLEM_ADD_READONLY_PROPERTY(type, name, desc)                                                                  \
   add_property(                                                                                                                            \
@@ -210,18 +210,18 @@ namespace simple
 
       static void expose()
       {
-        ::pinocchio::python::StdVectorPythonVisitor<typename ConstraintsProblem::BilateralPointConstraintModelVector, true>::expose(
+        eigenpy::StdVectorPythonVisitor<typename ConstraintsProblem::BilateralPointConstraintModelVector, true>::expose(
           "StdVec_BilateralPointConstraintModel");
 
-        ::pinocchio::python::StdVectorPythonVisitor<typename ConstraintsProblem::WeldConstraintModelVector, true>::expose(
+        eigenpy::StdVectorPythonVisitor<typename ConstraintsProblem::WeldConstraintModelVector, true>::expose(
           "StdVec_WeldConstraintModel");
 
-        ::pinocchio::python::StdVectorPythonVisitor<std::vector<double>, true>::expose("StdVec_double");
+        eigenpy::StdVectorPythonVisitor<std::vector<double>, true>::expose("StdVec_double");
 
-        ::pinocchio::python::StdVectorPythonVisitor<std::vector<typename ConstraintsProblem::ContactMapper>, true>::expose(
+        eigenpy::StdVectorPythonVisitor<std::vector<typename ConstraintsProblem::ContactMapper>, true>::expose(
           "StdVec_ContactMapper");
 
-        ::pinocchio::python::StdVectorPythonVisitor<std::vector<typename ConstraintsProblem::ContactMode>, true>::expose(
+        eigenpy::StdVectorPythonVisitor<std::vector<typename ConstraintsProblem::ContactMode>, true>::expose(
           "StdVec_ContactMode");
 
         bp::class_<typename ConstraintsProblem::WrappedConstraintModel>("WrappedConstraintModel", bp::no_init)
@@ -253,14 +253,14 @@ namespace simple
             },
             bp::return_internal_reference<>());
 
-        ::pinocchio::python::StdVectorPythonVisitor<typename ConstraintsProblem::WrappedConstraintModelVector, true>::expose(
+        eigenpy::StdVectorPythonVisitor<typename ConstraintsProblem::WrappedConstraintModelVector, true>::expose(
           "StdVec_WrappedConstraintModel");
-        ::pinocchio::python::StdVectorPythonVisitor<typename ConstraintsProblem::WrappedConstraintDataVector, true>::expose(
+        eigenpy::StdVectorPythonVisitor<typename ConstraintsProblem::WrappedConstraintDataVector, true>::expose(
           "StdVec_WrappedConstraintData");
 
         bp::class_<ConstraintsProblem>("ConstraintsProblem", "Contact problem.\n", bp::no_init)
           .def(ConstraintsProblemPythonVisitor<ConstraintsProblem>())
-          .def(::pinocchio::python::CopyableVisitor<ConstraintsProblem>());
+          .def(eigenpy::CopyableVisitor<ConstraintsProblem>());
       }
     };
 

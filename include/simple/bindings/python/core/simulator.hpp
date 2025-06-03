@@ -8,8 +8,8 @@
 #include "simple/bindings/python/fwd.hpp"
 #include "simple/core/simulator.hpp"
 
-#include <pinocchio/bindings/python/utils/std-vector.hpp>
-#include <pinocchio/bindings/python/utils/copyable.hpp>
+#include <eigenpy/std-vector.hpp>
+#include <eigenpy/copyable.hpp>
 
 // clang-format off
 #define SIMPLE_SIMULATOR_ADD_READONLY_HANDLE(type, name, desc)                                          \
@@ -288,7 +288,7 @@ namespace simple
       {
         bp::class_<Simulator>("Simulator", "Instance of Simulator.", bp::no_init)
           .def(SimulatorPythonVisitor<Simulator>())
-          .def(::pinocchio::python::CopyableVisitor<Simulator>());
+          .def(eigenpy::CopyableVisitor<Simulator>());
 
         {
           bp::enum_<ConstraintSolverType>("ConstraintSolverType")
